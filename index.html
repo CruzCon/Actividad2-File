@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <title>Contact Example</title>
+
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <script type="text/javascript" charset="utf-8">
+
+    // Wait for device API libraries to load
+    //
+    document.addEventListener("deviceready", onDeviceReady, false);
+
+    // device APIs are available
+    //
+    function onDeviceReady() {
+
+   var contactList = new ContactFindOptions();
+      contactList.filter="";
+      contactList.multiple=true;
+      var fields = ["*"];  //"*" will return all contact fields
+      navigator.contacts.find(fields,  getContactFields, contactList );
+  }
+
+  function getContactFields(contacts) {
+         for (var i=0; i<contacts.length; i++)
+        {
+               alert(contacts.length);
+               alert("Name:" + contacts[i].displayName + "\n"+
+                         "Birthday:"+ contacts[i].birthday)
+                        
+for (var j=0; j<contacts[i].phoneNumbers.length; j++) {
+                               alert("Type: " + contacts[i].phoneNumbers[j].type + "\n" +
+                                         "Value: "  + contacts[i].phoneNumbers[j].value );
+                        }
+ 
+    
+ }  
+    }
+    </script>
+  </head>
+  <body>
+    <h1>Example</h1>
+    <p>Find Contacts</p>
+  </body>
+</html>
