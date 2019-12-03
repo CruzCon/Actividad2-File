@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>Contact Example</title>
+    <title>FileWriter Example</title>
 
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
     <script type="text/javascript" charset="utf-8">
@@ -12,33 +13,41 @@
     // device APIs are available
     //
     function onDeviceReady() {
-
-   var contactList = new ContactFindOptions();
-      contactList.filter="";
-      contactList.multiple=true;
-      var fields = ["*"];  //"*" will return all contact fields
-      navigator.contacts.find(fields,  getContactFields, contactList );
-  }
-
-  function getContactFields(contacts) {
-         for (var i=0; i<contacts.length; i++)
-        {
-               alert(contacts.length);
-               alert("Name:" + contacts[i].displayName + "\n"+
-                         "Birthday:"+ contacts[i].birthday)
-                        
-for (var j=0; j<contacts[i].phoneNumbers.length; j++) {
-                               alert("Type: " + contacts[i].phoneNumbers[j].type + "\n" +
-                                         "Value: "  + contacts[i].phoneNumbers[j].value );
-                        }
- 
-    
- }  
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, gotFS, fail);
     }
+
+    function gotFS(fileSystem) {
+        fileSystem.root.getFile("readme.txt", {create: true, exclusive: false}, gotFileEntry, fail);
+    }
+
+    function gotFileEntry(fileEntry) {
+        fileEntry.createWriter(gotFileWriter, fail);
+    }
+
+    function gotFileWriter(writer) {
+        writer.onwriteend = function(evt) {
+            console.log("contents of file now 'some sample text'");
+            writer.truncate(11);
+            writer.onwriteend = function(evt) {
+                console.log("contents of file now 'some sample'");
+                writer.seek(4);
+                writer.write(" different text");
+                writer.onwriteend = function(evt){
+                    console.log("contents of file now 'some different text'");
+                }
+            };
+        };
+        writer.write("some sample text");
+    }
+
+    function fail(error) {
+        console.log(error.code);
+    }
+
     </script>
   </head>
   <body>
     <h1>Example</h1>
-    <p>Find Contacts</p>
+    <p>Write File</p>
   </body>
 </html>
