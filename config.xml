@@ -16,6 +16,7 @@
   <plugin name="cordova-plugin-media-capture"/>
   <plugin name="cordova-plugin-device-motion"/>
   <plugin name="cordova-plugin-contacts"/>
+  <plugin name="cordova-plugin-file"/>
   <access origin="*" />
   <allow-intent href="http://*/*" />
   <allow-intent href="https://*/*" />
