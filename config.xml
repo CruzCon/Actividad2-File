@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.cordova.contacto" version="1.5.0" xmlns="http://www.w3.org/ns/widgets"
- xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="io.cordova.file" version="1.5.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
 <preference name="phonegap-version" value="cli-9.0.0" />
-  <name>Contactos</name>
+  <name>Archivo</name>
   <description>
-      Esta es una App de PhoneGapp Contactos
+      Esta es una App de PhoneGapp File
   </description>
-  <author email="cruzcontreras58@gmail.com" href="http://cordova.io">
-      Cruz Contreras Carranza
+  <author email="" href="http://cordova.io">
+     Cruz, Yullisa
   </author>
   <content src="index.html" />
   <plugin name="cordova-plugin-whitelist" spec="1.3.4" />
