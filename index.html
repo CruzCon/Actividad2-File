@@ -2,7 +2,7 @@
 <html>
     <head>
         <style type="text/css">
-            button, input{display:block; width:90%; height:35px; margin:10px auto; }
+            button, input, textarea{display:block; width:90%; height:35px; margin:10px auto; }
             input{ text-align:center; font-size:15px; color:#666; }
             </style>
         
@@ -22,7 +22,7 @@
 
    function successCallback(fs) {
       fs.root.getFile('log.txt', {create: true, exclusive: true}, function(fileEntry) {
-         alert('File creation successfull!');
+         alert('Archivo creado!');
       }, errorCallback);
    }
 
@@ -42,14 +42,14 @@ function writeFile() {
 
          fileEntry.createWriter(function(fileWriter) {
             fileWriter.onwriteend = function(e) {
-               alert('Write completed.');
+               alert('Texto escrito.');
             };
 
             fileWriter.onerror = function(e) {
-               alert('Write failed: ' + e.toString());
+               alert('Fallo escritura: ' + e.toString());
             };
 
-            var blob = new Blob(['Practica en PhoneGap'], {type: 'text/plain'});
+            var blob = new Blob(['Practica en PhoneGap File'], {type: 'text/plain'});
             fileWriter.write(blob);
          }, errorCallback);
       }, errorCallback);
@@ -94,7 +94,7 @@ function removeFile() {
       fs.root.getFile('log.txt', {create: false}, function(fileEntry) {
 
          fileEntry.remove(function() {
-            alert('File removed.');
+            alert('Archivo borrado.');
          }, errorCallback);
       }, errorCallback);
    }
